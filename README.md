@@ -19,3 +19,8 @@ go install
 ```
 
 This will compile and install the binary in the bin golangroot folder
+
+## How to run
+
+```
+./BrainFuck
