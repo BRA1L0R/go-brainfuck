@@ -20,7 +20,6 @@ go install
 
 This will compile and install the binary in the bin golangroot folder
 
-## How to run
+## Program arguments
 
-```
-./BrainFuck
+- `-file <filename>`: specify the file to interpretate
