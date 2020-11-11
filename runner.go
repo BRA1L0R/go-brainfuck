@@ -9,7 +9,7 @@ import (
 func interpretate(instructions []byte, bracketOffsetMap map[int]int) {
 	// Initializing the fuckMemory
 	memPtr := int64(0)           // Empty memory pointer, initialized as uint64, starts from 0
-	mem := make(map[int64]uint8) // Creating the map of the memory
+	mem := make([]uint8, 30000)	 // 30000 is the cell limit of the original brainfuck compiler
 
 	// Initializing the instruction offset
 	instructionOffset := 0
