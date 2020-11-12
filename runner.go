@@ -12,19 +12,19 @@ func compressedCount(instructions []byte) (uint8, int) { // instruction must be 
 	offset := 0
 
 	for ;; {
-		if !unicode.IsDigit(rune(instructions[offset])) {
+		if !unicode.IsDigit(rune(instructions[offset])) {	// Count all the characters that are actually digits and stop the first non-digit it finds
 			break
 		}
-		offset++
+		offset++ // Increase the offset as it goes through all the numbers
 		if offset >= len(instructions) { break }
 	}
 
-	characterCount, err := strconv.Atoi(string(instructions[:offset]))
+	characterCount, err := strconv.Atoi(string(instructions[:offset])) // Calculate the amount of characters that have been replaced with numbers
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal(err)	// Throw error on parse error
 	}
 
-	return uint8(characterCount), offset
+	return uint8(characterCount), offset	// Return the count and the next instruction offset
 }
 
 // Main code execution loop
