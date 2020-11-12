@@ -1,6 +1,7 @@
 package main
 
 import (
+	"time"
 	"fmt"
 	"log"
 	"os"
@@ -79,6 +80,22 @@ func interpretate(instructions []byte, bracketOffsetMap map[int]int) {
 			}
 			instructionOffset = bracketOffsetMap[instructionOffset]
 			break
+		case '=':	// Visualizes the chunk of memory around the memory pointer
+			if !enhancedDebugging { break } // If enhanced debug characters are disabled then just do nothing
+			printMemory(mem, memPtr, false)	// Prints the memory
+			break
+		case '#':	// Visualizes the WHOLE memory
+			if !enhancedDebugging { break }
+			printMemory(mem, memPtr, true)	// Prints the WHOLE memory
+			break
+		}
+
+		if memVisualizer {	// If the memory visualizer option is turned on, print the memory after each instruction
+			printMemory(mem, memPtr, false)
+		}
+
+		if instructionDelay != 0 {
+			time.Sleep(instructionDelay)
 		}
 
 		instructionOffset++                         // Increase the instruction pointer after each instruction
@@ -86,4 +103,20 @@ func interpretate(instructions []byte, bracketOffsetMap map[int]int) {
 			break
 		}
 	}
+}
+
+func printMemory(mem []uint8, memPtr int64, whole bool) {
+	if whole { 
+		fmt.Println(mem) 
+	}	else {
+		for i := int64(-4); i < 5; i++ {
+			if memPtr + i < 0 { fmt.Print(sprintCell(0)); continue }
+			fmt.Print(sprintCell(mem[memPtr + i]))
+		}
+		fmt.Print("\n\n")
+	}
+}
+
+func sprintCell(val uint8) string{
+	return fmt.Sprintf(" [%v] ", val)
 }
