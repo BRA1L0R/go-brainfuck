@@ -2,6 +2,9 @@
 
 # Go-BrainFuck
 
+![](https://img.shields.io/github/go-mod/go-version/BRA1L0R/go-brainfuck)
+![](https://img.shields.io/github/v/release/BRA1L0R/go-brainfuck?include_prereleases)
+
 ### The first golang brainfuck interpreter that actually works
 
 ## How to compile
